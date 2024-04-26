@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1 class="name">Smit Kanpariya</h1>
+  <div class="calculator">
+    <div class="display">0</div>
+    <button class="button" onclick="clearDisplay()">AC</button>
+    <button class="button">+/-</button>
+    <button class="button" onclick="appendOperator('%')">%</button>
+    <button class="button" onclick="appendOperator('/')">÷</button>
+    <button class="button" onclick="appendValue('7')">7</button>
+    <button class="button" onclick="appendValue('8')">8</button>
+    <button class="button" onclick="appendValue('9')">9</button>
+    <button class="button" onclick="appendOperator('*')">x</button>
+    <button class="button" onclick="appendValue('4')">4</button>
+    <button class="button" onclick="appendValue('5')">5</button>
+    <button class="button" onclick="appendValue('6')">6</button>
+    <button class="button" onclick="appendOperator('-')">-</button>
+    <button class="button" onclick="appendValue('1')">1</button>
+    <button class="button" onclick="appendValue('2')">2</button>
+    <button class="button" onclick="appendValue('3')">3</button>
+    <button class="button" onclick="appendOperator('+')">+</button>
+    <button class="button zero" onclick="appendValue('0')">0</button>
+    <button class="button" onclick="appendValue('.')">.</button>
+    <button class="button equal" onclick="calculate()">=</button>
+  </div>
+
+  <script>
+    let displayValue = '';
+
+    function clearDisplay() {
+      displayValue = '';
+      updateDisplay();
+    }
+
+    function appendValue(value) {
+      displayValue += value;
+      updateDisplay();
+    }
+
+    function appendOperator(operator) {
+      // Check if the last character is an operator, if yes, replace it with the new operator
+      if (['+', '-', '*', '/'].includes(displayValue.slice(-1))) {
+        displayValue = displayValue.slice(0, -1) + operator;
+      } else {
+        displayValue += operator;
+      }
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      document.querySelector('.display').innerText = displayValue;
+    }
+
+    function calculate() {
+      try {
+        const result = eval(displayValue);
+        displayValue = result.toString();
+        updateDisplay();
+      } catch (error) {
+        displayValue = 'Error';
+        updateDisplay();
+      }
+    }
+
+
+      document.addEventListener('DOMContentLoaded', function() {
+  const nameElement = document.querySelector('.name');
+
+  nameElement.addEventListener('mouseenter', () => {
+    const newPositionX = Math.random() * (window.innerWidth - nameElement.offsetWidth);
+    const newPositionY = Math.random() * (window.innerHeight - nameElement.offsetHeight);
+    nameElement.style.position = 'absolute';
+    nameElement.style.top = newPositionY + 'px';
+    nameElement.style.left = newPositionX + 'px';
+  });
+});
+  </script>
+</body>
+</html>
