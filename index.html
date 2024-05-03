@@ -43,15 +43,26 @@
 
     function appendValue(value) {
       if (displayValue === '0' || displayValue === 'Error') {
-        displayValue = ''; 
-      }
-      if (value === '-' && displayValue === '') {
-        displayValue = '-';
-      } else if (value === '-' && displayValue === '-') {
-        displayValue = '';
-      } else {
-        displayValue += value;
-      }      
+    displayValue = ''; 
+  }
+
+
+  if (value === '-' && displayValue === '') {
+    // Display the negative sign if it's the first input
+    displayValue = '-';
+  } else if (value === '-' && displayValue === '-') {
+    // Remove existing negative sign if clicked again (toggling the sign)
+    displayValue = '';
+  } else if (displayValue === '-' && (value >= '0' && value <= '9')) {
+    // Replace the existing negative sign with the first digit of the number
+    displayValue = '-' + value;
+  } else if (displayValue === '0' && value === '.') {
+    // Handle leading decimal point when displayValue is '0'
+    displayValue += value;
+  } else {
+    // Append the regular number or decimal point
+    displayValue += value;
+  }
       updateDisplay(); 
 }
 
