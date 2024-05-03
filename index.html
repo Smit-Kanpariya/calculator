@@ -11,7 +11,8 @@
   <div class="calculator">
     <div class="display">0</div>
     <button class="button" onclick="clearDisplay()">AC</button>
-    <button class="button">+/-</button>
+    <!-- <button class="button">+/-</button> -->
+    <button class="button" onclick="toggleSign()">+/-</button>
     <button class="button" onclick="appendOperator('%')">%</button>
     <button class="button" onclick="appendOperator('/')">÷</button>
     <button class="button" onclick="appendValue('7')">7</button>
@@ -73,7 +74,12 @@
         updateDisplay();
       }
     }
-
+    function toggleSign() {
+      if (displayValue !== '0' && displayValue !== 'Error') {
+        displayValue = (parseFloat(displayValue) * -1).toString();
+        updateDisplay();
+      }
+    }
 
       document.addEventListener('DOMContentLoaded', function() {
   const nameElement = document.querySelector('.name');
