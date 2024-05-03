@@ -36,22 +36,28 @@
     let displayValue = '';
 
     function clearDisplay() {
-  displayValue = '0'; // Reset displayValue to '0'
-  updateDisplay(); // Update display after clearing
+  displayValue = '0'; 
+  updateDisplay(); 
 }
 
 
     function appendValue(value) {
-  if (displayValue === '0') {
-    displayValue = ''; // Remove initial '0' if present
-  }
-  displayValue += value;
-  updateDisplay(); // Update display after appending value
+      if (displayValue === '0' || displayValue === 'Error') {
+        displayValue = ''; 
+      }
+      if (value === '-' && displayValue === '') {
+        displayValue = '-';
+      } else if (value === '-' && displayValue === '-') {
+        displayValue = '';
+      } else {
+        displayValue += value;
+      }      
+      updateDisplay(); 
 }
 
 
     function appendOperator(operator) {
-      // Check if the last character is an operator, if yes, replace it with the new operator
+
       if (['+', '-', '*', '/'].includes(displayValue.slice(-1))) {
         displayValue = displayValue.slice(0, -1) + operator;
       } else {
