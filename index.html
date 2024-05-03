@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1 class="name">Click me.</h1>
+  <h1 class="name">Click me</h1>
   <div class="calculator">
     <div class="display">0</div>
     <button class="button" onclick="clearDisplay()">AC</button>
@@ -35,14 +35,19 @@
     let displayValue = '';
 
     function clearDisplay() {
-      displayValue = '';
-      updateDisplay();
-    }
+  displayValue = '0'; // Reset displayValue to '0'
+  updateDisplay(); // Update display after clearing
+}
+
 
     function appendValue(value) {
-      displayValue += value;
-      updateDisplay();
-    }
+  if (displayValue === '0') {
+    displayValue = ''; // Remove initial '0' if present
+  }
+  displayValue += value;
+  updateDisplay(); // Update display after appending value
+}
+
 
     function appendOperator(operator) {
       // Check if the last character is an operator, if yes, replace it with the new operator
@@ -55,8 +60,8 @@
     }
 
     function updateDisplay() {
-      document.querySelector('.display').innerText = displayValue;
-    }
+  document.querySelector('.display').innerText = displayValue;
+  }
 
     function calculate() {
       try {
