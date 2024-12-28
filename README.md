@@ -1,4 +1,4 @@
-# Calculator Practice Project
+# Calculator
 
 This is a simple calculator web application developed as a practice project to demonstrate basic arithmetic operations.
 
