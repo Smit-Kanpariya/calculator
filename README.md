@@ -15,3 +15,5 @@ This is a simple calculator web application developed as a practice project to d
 ## Technologies Used
 
 - HTML/CSS/JavaScript
+
+
